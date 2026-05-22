@@ -5,6 +5,17 @@
 
 import heroImage from "@/assets/grdn-hero.jpg";
 import posterImage from "@/assets/event-poster.jpg";
+import gallery1 from "@/assets/gallery-1.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
+import gallery3 from "@/assets/gallery-3.jpg";
+import gallery4 from "@/assets/gallery-4.jpg";
+import gallery5 from "@/assets/gallery-5.jpg";
+import gardenMemoryDance from "@/assets/garden-memory-dance.jpg";
+import gardenMemoryFire from "@/assets/garden-memory-fire.jpg";
+import sunsetMemoryBonfire from "@/assets/sunset-memory-bonfire.jpg";
+import sunsetMemoryDance from "@/assets/sunset-memory-dance.jpg";
+import techMemoryStage from "@/assets/tech-memory-stage.jpg";
+import techMemoryVisuals from "@/assets/tech-memory-visuals.jpg";
 
 export interface TicketType {
   id: string;
@@ -13,6 +24,14 @@ export interface TicketType {
   priceKes: number;
   benefits: string[];
   badge?: string;
+}
+
+export interface GalleryPhoto {
+  src: string;
+  alt: string;
+  guestHandle: string;
+  likes: number;
+  frame: "portrait" | "square";
 }
 
 export interface GrdnEvent {
@@ -31,6 +50,7 @@ export interface GrdnEvent {
   status: "upcoming" | "past";
   isFeatured: boolean;
   activities: string[];
+  galleryPhotos: GalleryPhoto[];
   ticketTypes: TicketType[];
 }
 
@@ -57,6 +77,57 @@ export const events: GrdnEvent[] = [
       "Summer Activities",
       "Swimming",
       "Fire Dance Show",
+    ],
+    galleryPhotos: [
+      {
+        src: gardenMemoryDance,
+        alt: "Guests dancing beside the garden DJ stage at sunset",
+        guestHandle: "@nia",
+        likes: 94,
+        frame: "portrait",
+      },
+      {
+        src: gallery1,
+        alt: "DJ booth glowing over a garden crowd",
+        guestHandle: "@gardenke",
+        likes: 71,
+        frame: "square",
+      },
+      {
+        src: gardenMemoryFire,
+        alt: "Fire dance show lighting up the garden poolside crowd",
+        guestHandle: "@mali",
+        likes: 126,
+        frame: "portrait",
+      },
+      {
+        src: gallery3,
+        alt: "Friends laughing together inside the garden party",
+        guestHandle: "@roamwithrae",
+        likes: 58,
+        frame: "square",
+      },
+      {
+        src: gallery4,
+        alt: "Night pool reflections beneath tropical leaves",
+        guestHandle: "@vibecheck",
+        likes: 83,
+        frame: "portrait",
+      },
+      {
+        src: gallery5,
+        alt: "Crowd moving under bright festival lights",
+        guestHandle: "@thedrop",
+        likes: 112,
+        frame: "square",
+      },
+      {
+        src: gallery2,
+        alt: "Fire trails captured during the evening performance",
+        guestHandle: "@lensandbass",
+        likes: 67,
+        frame: "portrait",
+      },
     ],
     ticketTypes: [
       {
@@ -106,6 +177,22 @@ export const events: GrdnEvent[] = [
     status: "upcoming",
     isFeatured: false,
     activities: ["Sunset DJ sets", "Coastal food", "Bonfire after-hours"],
+    galleryPhotos: [
+      {
+        src: sunsetMemoryDance,
+        alt: "Sunset Sessions guests dancing by the Kilifi shoreline",
+        guestHandle: "@coastgroove",
+        likes: 88,
+        frame: "portrait",
+      },
+      {
+        src: sunsetMemoryBonfire,
+        alt: "Beach bonfire dance after the coastal Afro-house set",
+        guestHandle: "@saltandsound",
+        likes: 104,
+        frame: "portrait",
+      },
+    ],
     ticketTypes: [
       {
         id: "regular",
@@ -139,6 +226,22 @@ export const events: GrdnEvent[] = [
     status: "upcoming",
     isFeatured: false,
     activities: ["Tech-house sets", "Late-night kitchen", "Visuals lab"],
+    galleryPhotos: [
+      {
+        src: techMemoryStage,
+        alt: "Warehouse crowd facing the Tech and Bass DJ stage",
+        guestHandle: "@nightfreq",
+        likes: 97,
+        frame: "portrait",
+      },
+      {
+        src: techMemoryVisuals,
+        alt: "Friends inside the Tech and Bass visual lab glow",
+        guestHandle: "@afterdarkfiles",
+        likes: 69,
+        frame: "portrait",
+      },
+    ],
     ticketTypes: [
       {
         id: "regular",

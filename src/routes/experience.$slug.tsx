@@ -1,12 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getEventBySlug, type GrdnEvent } from "@/data/events";
 
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-
 export const Route = createFileRoute("/experience/$slug")({
   loader: ({ params }) => {
     const event = getEventBySlug(params.slug);
@@ -16,7 +10,7 @@ export const Route = createFileRoute("/experience/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.event.title} — Gallery — THE GRDN` },
+          { title: `${loaderData.event.title} - Gallery - THE GRDN` },
           {
             name: "description",
             content: `Shared memories from ${loaderData.event.title}.`,
@@ -27,8 +21,6 @@ export const Route = createFileRoute("/experience/$slug")({
   component: EventGalleryPage,
 });
 
-const samplePhotos = [gallery1, gallery5, gallery2, gallery3, gallery4, gallery1, gallery2, gallery5, gallery3, gallery4];
-
 function EventGalleryPage() {
   const { event } = Route.useLoaderData() as { event: GrdnEvent };
 
@@ -38,12 +30,12 @@ function EventGalleryPage() {
         to="/experience"
         className="text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-primary mb-6 inline-block"
       >
-        ← All experiences
+        Back to all experiences
       </Link>
 
       <header className="mb-12">
         <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-grdn-lime mb-4">
-          {event.displayDate} · {event.venue}
+          {event.displayDate} / {event.venue}
         </p>
         <h1 className="font-display text-5xl md:text-7xl uppercase leading-none mb-4">
           {event.title}
@@ -53,7 +45,6 @@ function EventGalleryPage() {
         </p>
       </header>
 
-      {/* Location gate notice */}
       <div className="glass rounded-2xl p-6 mb-12 flex items-center justify-between gap-4 flex-wrap">
         <div>
           <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-1">
@@ -72,24 +63,21 @@ function EventGalleryPage() {
         </button>
       </div>
 
-      {/* Masonry-ish gallery */}
       <section className="columns-2 md:columns-3 lg:columns-4 gap-3 [&>*]:mb-3">
-        {samplePhotos.map((src, i) => (
+        {event.galleryPhotos.map((photo) => (
           <div
-            key={i}
+            key={`${event.slug}-${photo.src}`}
             className="break-inside-avoid rounded-xl overflow-hidden bg-card border border-border group relative"
           >
             <img
-              src={src}
-              alt={`Memory ${i + 1} from ${event.title}`}
+              src={photo.src}
+              alt={photo.alt}
               loading="lazy"
               className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-background/80 to-transparent flex justify-between items-end text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity">
-              <span className="text-muted-foreground">@guest</span>
-              <span className="flex items-center gap-1 text-primary">
-                ♡ {Math.floor(Math.random() * 80) + 5}
-              </span>
+              <span className="text-muted-foreground">{photo.guestHandle}</span>
+              <span className="flex items-center gap-1 text-primary">Heart {photo.likes}</span>
             </div>
           </div>
         ))}

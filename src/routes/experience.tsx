@@ -1,12 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { events } from "@/data/events";
 
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-
 export const Route = createFileRoute("/experience")({
   head: () => ({
     meta: [
@@ -25,7 +19,12 @@ export const Route = createFileRoute("/experience")({
   component: ExperiencePage,
 });
 
-const photos = [gallery1, gallery5, gallery2, gallery3, gallery4, gallery1, gallery5, gallery2];
+const photos = events.flatMap((event) =>
+  event.galleryPhotos.slice(0, 3).map((photo) => ({
+    ...photo,
+    eventTitle: event.title,
+  })),
+);
 
 function ExperiencePage() {
   return (
@@ -48,18 +47,28 @@ function ExperiencePage() {
         <h2 className="font-display text-2xl uppercase text-muted-foreground mb-6">
           Pick an event
         </h2>
-        <div className="flex gap-3 flex-wrap">
+        <div className="grid gap-4 md:grid-cols-3">
           {events.map((event) => (
             <Link
               key={event.slug}
               to="/experience/$slug"
               params={{ slug: event.slug }}
-              className="px-5 py-3 glass rounded-full text-sm hover:bg-white/10 transition-all"
+              className="glass group overflow-hidden rounded-xl transition-transform hover:-translate-y-1"
             >
-              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mr-2">
-                {event.displayDate}
-              </span>
-              {event.title}
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={event.galleryPhotos[0].src}
+                  alt={event.galleryPhotos[0].alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  {event.displayDate}
+                </span>
+                <div className="mt-2 font-display text-2xl uppercase">{event.title}</div>
+              </div>
             </Link>
           ))}
         </div>
@@ -71,16 +80,16 @@ function ExperiencePage() {
           Recent memories
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {photos.map((src, i) => (
+          {photos.map((photo, i) => (
             <div
-              key={i}
+              key={`${photo.eventTitle}-${photo.src}`}
               className={`rounded-xl overflow-hidden bg-card border border-border ${
-                i % 3 === 0 ? "aspect-[3/4]" : "aspect-square"
+                photo.frame === "portrait" || i % 3 === 0 ? "aspect-[3/4]" : "aspect-square"
               }`}
             >
               <img
-                src={src}
-                alt={`Memory ${i + 1}`}
+                src={photo.src}
+                alt={photo.alt}
                 loading="lazy"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
