@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getEventBySlug } from "@/data/events";
+import { getEventBySlug, type GrdnEvent } from "@/data/events";
 import { TicketCard } from "@/components/grdn/TicketCard";
 
 export const Route = createFileRoute("/events/$slug")({
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/events/$slug")({
 });
 
 function SingleEventPage() {
-  const { event } = Route.useLoaderData();
+  const { event } = Route.useLoaderData() as { event: GrdnEvent };
 
   return (
     <article>
