@@ -73,7 +73,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "THE GRDN — Afrobeats. Afro-house. Tech. Culture." },
+      { title: "THE GRDN" },
       {
         name: "description",
         content:
@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "The Garden Ke" },
       { name: "theme-color", content: "#0a0a0c" },
-      { property: "og:title", content: "THE GRDN — The Garden Ke" },
+      { property: "og:title", content: "THE GRDN" },
       {
         property: "og:description",
         content: "Africa's No. 1 Afrobeats event. Tickets, experience and culture.",
@@ -89,6 +89,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@thegardenke" },
+      { name: "twitter:title", content: "THE GRDN" },
+      { name: "description", content: "THE GRDN is an immersive Afrobeats event website for ticket sales, event experiences, and photo sharing." },
+      { property: "og:description", content: "THE GRDN is an immersive Afrobeats event website for ticket sales, event experiences, and photo sharing." },
+      { name: "twitter:description", content: "THE GRDN is an immersive Afrobeats event website for ticket sales, event experiences, and photo sharing." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
