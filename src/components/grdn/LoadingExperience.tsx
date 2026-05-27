@@ -11,12 +11,14 @@ export function LoadingExperience() {
   useEffect(() => {
     const previousBodyOverflow = document.body.style.overflow;
     const previousHtmlOverflow = document.documentElement.style.overflow;
+    document.documentElement.classList.add("grdn-loading-lock");
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden";
 
     const fadeTimer = setTimeout(() => setFadingOut(true), 1400);
     const hideTimer = setTimeout(() => {
       setVisible(false);
+      document.documentElement.classList.remove("grdn-loading-lock");
       document.body.style.overflow = previousBodyOverflow;
       document.documentElement.style.overflow = previousHtmlOverflow;
     }, 2000);
@@ -24,6 +26,7 @@ export function LoadingExperience() {
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
+      document.documentElement.classList.remove("grdn-loading-lock");
       document.body.style.overflow = previousBodyOverflow;
       document.documentElement.style.overflow = previousHtmlOverflow;
     };

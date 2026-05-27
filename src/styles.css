@@ -124,6 +124,16 @@
   ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, var(--grdn-lime), var(--primary));
   }
+  html.grdn-loading-lock {
+    scrollbar-width: none;
+  }
+  html.grdn-loading-lock::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  html.grdn-loading-lock body {
+    overscroll-behavior: none;
+  }
 }
 
 /* Glass surfaces */
