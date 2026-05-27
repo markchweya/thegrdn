@@ -12,7 +12,7 @@ export const Route = createFileRoute("/checkout")({
   validateSearch: checkoutSearchSchema,
   head: () => ({
     meta: [
-      { title: "Checkout — THE GRDN" },
+      { title: "THE GRDN" },
       { name: "description", content: "Complete your ticket purchase via M-Pesa." },
     ],
   }),

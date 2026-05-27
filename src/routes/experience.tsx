@@ -4,12 +4,12 @@ import { events } from "@/data/events";
 export const Route = createFileRoute("/experience")({
   head: () => ({
     meta: [
-      { title: "The Experience — THE GRDN" },
+      { title: "THE GRDN" },
       {
         name: "description",
         content: "The shared gallery of THE GRDN. Memories captured by the people inside the garden.",
       },
-      { property: "og:title", content: "The Experience — THE GRDN" },
+      { property: "og:title", content: "THE GRDN" },
       {
         property: "og:description",
         content: "Buy a ticket. Scan in. Share the moment.",

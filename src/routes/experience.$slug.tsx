@@ -10,7 +10,7 @@ export const Route = createFileRoute("/experience/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.event.title} - Gallery - THE GRDN` },
+          { title: "THE GRDN" },
           {
             name: "description",
             content: `Shared memories from ${loaderData.event.title}.`,

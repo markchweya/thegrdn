@@ -12,16 +12,16 @@ import gallery5 from "@/assets/gallery-5.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "THE GRDN — Afrobeats. Afro-house. Tech. Culture." },
+      { title: "THE GRDN" },
       {
         name: "description",
         content:
-          "Official home of The Garden Ke. Tickets, events and the shared experience gallery — Africa's No. 1 Afrobeats event.",
+          "Official home of The Garden Ke. Tickets, events and the shared experience gallery.",
       },
-      { property: "og:title", content: "THE GRDN — The Garden Ke" },
+      { property: "og:title", content: "THE GRDN" },
       {
         property: "og:description",
-        content: "Africa's No. 1 Afrobeats event. Tickets, experience and culture.",
+        content: "Tickets, experience and culture from The Garden Ke.",
       },
     ],
   }),
@@ -54,7 +54,7 @@ function HomePage() {
             THE <span className="grdn-gradient-text">GRDN</span>
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-balance opacity-80 font-light">
-            Afrobeats. Afro-house. Tech. Culture. One experience.
+            Music. Movement. Culture. One experience.
           </p>
         </div>
 

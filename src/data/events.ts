@@ -14,8 +14,8 @@ import gardenMemoryDance from "@/assets/garden-memory-dance.jpg";
 import gardenMemoryFire from "@/assets/garden-memory-fire.jpg";
 import sunsetMemoryBonfire from "@/assets/sunset-memory-bonfire.jpg";
 import sunsetMemoryDance from "@/assets/sunset-memory-dance.jpg";
-import techMemoryStage from "@/assets/tech-memory-stage.jpg";
-import techMemoryVisuals from "@/assets/tech-memory-visuals.jpg";
+import bassMemoryStage from "@/assets/bass-memory-stage.jpg";
+import bassMemoryVisuals from "@/assets/bass-memory-visuals.jpg";
 
 export interface TicketType {
   id: string;
@@ -58,9 +58,9 @@ export const events: GrdnEvent[] = [
   {
     slug: "the-garden-experience-july-11",
     title: "The Garden Experience",
-    tagline: "Experience Afro-house, tech and beats.",
+    tagline: "Experience music, movement and garden energy.",
     description:
-      "A summer Afro-house pilgrimage. Live DJ sets, fire dance, swimming, food and drinks — all wrapped inside a secret garden under the Nairobi stars.",
+      "A summer garden pilgrimage. Live DJ sets, fire dance, swimming, food and drinks — all wrapped inside a secret garden under the Nairobi stars.",
     date: "2026-07-11",
     displayDate: "July 11, 2026",
     startTime: "15:00",
@@ -164,7 +164,7 @@ export const events: GrdnEvent[] = [
   {
     slug: "sunset-sessions-august",
     title: "Sunset Sessions",
-    tagline: "Coastal Afro-house on the Indian Ocean.",
+    tagline: "Coastal sound on the Indian Ocean.",
     description: "A beachfront edition of THE GRDN. Sand, sound and a saltwater sunset.",
     date: "2026-08-24",
     displayDate: "August 24, 2026",
@@ -187,7 +187,7 @@ export const events: GrdnEvent[] = [
       },
       {
         src: sunsetMemoryBonfire,
-        alt: "Beach bonfire dance after the coastal Afro-house set",
+        alt: "Beach bonfire dance after the coastal sunset set",
         guestHandle: "@saltandsound",
         likes: 104,
         frame: "portrait",
@@ -211,8 +211,8 @@ export const events: GrdnEvent[] = [
     ],
   },
   {
-    slug: "tech-and-bass-september",
-    title: "Tech & Bass",
+    slug: "bass-and-bloom-september",
+    title: "Bass & Bloom",
     tagline: "Underground frequencies, after dark.",
     description: "A late-night warehouse edition. Low light, deep bass, no compromise.",
     date: "2026-09-02",
@@ -225,18 +225,18 @@ export const events: GrdnEvent[] = [
     heroUrl: heroImage,
     status: "upcoming",
     isFeatured: false,
-    activities: ["Tech-house sets", "Late-night kitchen", "Visuals lab"],
+    activities: ["Deep bass sets", "Late-night kitchen", "Visuals lab"],
     galleryPhotos: [
       {
-        src: techMemoryStage,
-        alt: "Warehouse crowd facing the Tech and Bass DJ stage",
+        src: bassMemoryStage,
+        alt: "Warehouse crowd facing the Bass and Bloom DJ stage",
         guestHandle: "@nightfreq",
         likes: 97,
         frame: "portrait",
       },
       {
-        src: techMemoryVisuals,
-        alt: "Friends inside the Tech and Bass visual lab glow",
+        src: bassMemoryVisuals,
+        alt: "Friends inside the Bass and Bloom visual lab glow",
         guestHandle: "@afterdarkfiles",
         likes: 69,
         frame: "portrait",

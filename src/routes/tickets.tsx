@@ -5,12 +5,12 @@ import { getFeaturedEvent } from "@/data/events";
 export const Route = createFileRoute("/tickets")({
   head: () => ({
     meta: [
-      { title: "Tickets — THE GRDN" },
+      { title: "THE GRDN" },
       {
         name: "description",
         content: "Buy your ticket into THE GRDN. Early Bird, Regular, VIP and Group passes via M-Pesa.",
       },
-      { property: "og:title", content: "Tickets — THE GRDN" },
+      { property: "og:title", content: "THE GRDN" },
       {
         property: "og:description",
         content: "Your ticket into the experience. Pay with M-Pesa.",

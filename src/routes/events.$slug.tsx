@@ -11,9 +11,9 @@ export const Route = createFileRoute("/events/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.event.title} — THE GRDN` },
+          { title: "THE GRDN" },
           { name: "description", content: loaderData.event.description },
-          { property: "og:title", content: `${loaderData.event.title} — THE GRDN` },
+          { property: "og:title", content: "THE GRDN" },
           { property: "og:description", content: loaderData.event.tagline },
           { property: "og:image", content: loaderData.event.posterUrl },
         ]
