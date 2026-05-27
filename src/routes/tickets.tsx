@@ -8,12 +8,12 @@ export const Route = createFileRoute("/tickets")({
       { title: "THE GRDN" },
       {
         name: "description",
-        content: "Buy your ticket into THE GRDN. Early Bird, Regular, VIP and Group passes via M-Pesa.",
+        content: "THE GRDN ticket room. Pick your pass, lock your entry, arrive ready.",
       },
       { property: "og:title", content: "THE GRDN" },
       {
         property: "og:description",
-        content: "Your ticket into the experience. Pay with M-Pesa.",
+        content: "Pick your pass, lock your entry, arrive ready.",
       },
     ],
   }),
@@ -30,10 +30,10 @@ function TicketsPage() {
           {event.displayDate} · {event.venue}
         </p>
         <h1 className="font-display text-6xl md:text-8xl uppercase leading-none mb-4">
-          Your <span className="grdn-gradient-text">Ticket</span>
+          Choose your <span className="grdn-gradient-text">Pass</span>
         </h1>
         <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-          Pay with M-Pesa. Receive your QR ticket instantly. Scan in at the gate.
+          The gate opens by pass. Pick your tier, keep your QR close, arrive with the right energy.
         </p>
       </header>
 
@@ -45,14 +45,13 @@ function TicketsPage() {
 
       <section className="mt-20 glass rounded-2xl p-8 md:p-12 max-w-3xl mx-auto text-center">
         <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-muted-foreground mb-3">
-          Secure checkout
+          Gate protocol
         </p>
         <h2 className="font-display text-3xl uppercase mb-4">
-          Paying with M-Pesa
+          Lock the pass
         </h2>
         <p className="text-sm text-muted-foreground">
-          Select a tier, enter your Safaricom number, and confirm the STK Push prompt on your phone.
-          Your QR ticket arrives the moment payment confirms.
+          Your GRDN pass is built for fast entry: choose the tier, confirm payment, carry the QR to the gate.
         </p>
       </section>
     </div>

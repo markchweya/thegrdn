@@ -1,6 +1,5 @@
 /**
- * Demo event + ticket data used until Supabase is wired up.
- * Mirrors the planned database schema so swap-out is straightforward.
+ * THE GRDN event + ticket catalogue.
  */
 
 import heroImage from "@/assets/grdn-hero.jpg";
@@ -58,9 +57,9 @@ export const events: GrdnEvent[] = [
   {
     slug: "the-garden-experience-july-11",
     title: "The Garden Experience",
-    tagline: "Experience music, movement and garden energy.",
+    tagline: "Nairobi after sunset. Sound, water, fire, and open-air energy.",
     description:
-      "A summer garden pilgrimage. Live DJ sets, fire dance, swimming, food and drinks — all wrapped inside a secret garden under the Nairobi stars.",
+      "The flagship GRDN night: a secret-garden takeover built for music, movement, poolside heat, firelight, and the kind of memories that stay loud.",
     date: "2026-07-11",
     displayDate: "July 11, 2026",
     startTime: "15:00",
@@ -133,14 +132,14 @@ export const events: GrdnEvent[] = [
       {
         id: "early-bird",
         name: "Early Bird",
-        description: "Limited early access ticket.",
+        description: "First in before the rush.",
         priceKes: 1000,
         benefits: ["Event entry", "Shared gallery access", "QR ticket"],
       },
       {
         id: "regular",
         name: "Regular",
-        description: "The full experience.",
+        description: "Your pass into the garden.",
         priceKes: 1500,
         benefits: ["Event entry", "Shared gallery", "Welcome drink", "QR ticket"],
         badge: "Most popular",
@@ -148,14 +147,14 @@ export const events: GrdnEvent[] = [
       {
         id: "vip",
         name: "VIP",
-        description: "Elevated experience for guests who want more.",
+        description: "Priority access with a softer landing.",
         priceKes: 3000,
         benefits: ["VIP entry", "Priority access", "Lounge access", "Gift bag"],
       },
       {
         id: "group",
         name: "Group Pass",
-        description: "Roll with your people.",
+        description: "Five entries for the crew.",
         priceKes: 5000,
         benefits: ["Entry for 5", "Reserved table", "Bottle service"],
       },
@@ -164,8 +163,8 @@ export const events: GrdnEvent[] = [
   {
     slug: "sunset-sessions-august",
     title: "Sunset Sessions",
-    tagline: "Coastal sound on the Indian Ocean.",
-    description: "A beachfront edition of THE GRDN. Sand, sound and a saltwater sunset.",
+    tagline: "Salt air, golden hour, and a coast-side GRDN pulse.",
+    description: "A shoreline edition for slow sunsets, warm basslines, bonfire circles, and that after-dark coast feeling.",
     date: "2026-08-24",
     displayDate: "August 24, 2026",
     startTime: "16:00",
@@ -197,14 +196,14 @@ export const events: GrdnEvent[] = [
       {
         id: "regular",
         name: "Regular",
-        description: "Standard entry.",
+        description: "Beachside access.",
         priceKes: 2000,
         benefits: ["Event entry", "Shared gallery"],
       },
       {
         id: "vip",
         name: "VIP",
-        description: "VIP lounge.",
+        description: "Elevated coastal access.",
         priceKes: 4000,
         benefits: ["VIP entry", "Lounge", "Welcome drink"],
       },
@@ -213,8 +212,8 @@ export const events: GrdnEvent[] = [
   {
     slug: "bass-and-bloom-september",
     title: "Bass & Bloom",
-    tagline: "Underground frequencies, after dark.",
-    description: "A late-night warehouse edition. Low light, deep bass, no compromise.",
+    tagline: "Low light. Deep bass. A bloom after dark.",
+    description: "A warehouse-style GRDN night made for heavy sound, late kitchens, visual flashes, and a room that does not cool down early.",
     date: "2026-09-02",
     displayDate: "September 2, 2026",
     startTime: "22:00",
@@ -246,7 +245,7 @@ export const events: GrdnEvent[] = [
       {
         id: "regular",
         name: "Regular",
-        description: "All-night access.",
+        description: "All-night entry.",
         priceKes: 1800,
         benefits: ["Entry", "Shared gallery"],
       },

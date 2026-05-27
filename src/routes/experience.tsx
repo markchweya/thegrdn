@@ -7,12 +7,12 @@ export const Route = createFileRoute("/experience")({
       { title: "THE GRDN" },
       {
         name: "description",
-        content: "The shared gallery of THE GRDN. Memories captured by the people inside the garden.",
+        content: "THE GRDN memory vault. Nights, faces, and fragments from inside the garden.",
       },
       { property: "og:title", content: "THE GRDN" },
       {
         property: "og:description",
-        content: "Buy a ticket. Scan in. Share the moment.",
+        content: "Nights, faces, and fragments from inside the garden.",
       },
     ],
   }),
@@ -31,21 +31,19 @@ function ExperiencePage() {
     <div className="px-6 py-20 max-w-7xl mx-auto">
       <header className="mb-16 max-w-3xl">
         <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-grdn-lime mb-4">
-          The shared vault
+          The vault
         </p>
         <h1 className="font-display text-6xl md:text-8xl uppercase leading-none mb-6">
           The <span className="grdn-gradient-text">Experience</span>
         </h1>
         <p className="text-lg text-muted-foreground">
-          Memories captured from inside the garden. Posting unlocks at the venue.
-          Viewing stays open forever.
+          Faces, firelight, pool glow, and the moments that prove the night happened.
         </p>
       </header>
 
-      {/* Event group selector */}
       <section className="mb-16">
         <h2 className="font-display text-2xl uppercase text-muted-foreground mb-6">
-          Pick an event
+          Choose a night
         </h2>
         <div className="grid gap-4 md:grid-cols-3">
           {events.map((event) => (
@@ -74,17 +72,16 @@ function ExperiencePage() {
         </div>
       </section>
 
-      {/* Sample wall */}
       <section>
         <h2 className="font-display text-2xl uppercase text-muted-foreground mb-6">
-          Recent memories
+          Fresh from the vault
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {photos.map((photo, i) => (
+          {photos.map((photo, index) => (
             <div
               key={`${photo.eventTitle}-${photo.src}`}
               className={`rounded-xl overflow-hidden bg-card border border-border ${
-                photo.frame === "portrait" || i % 3 === 0 ? "aspect-[3/4]" : "aspect-square"
+                photo.frame === "portrait" || index % 3 === 0 ? "aspect-[3/4]" : "aspect-square"
               }`}
             >
               <img
@@ -98,18 +95,16 @@ function ExperiencePage() {
         </div>
       </section>
 
-      {/* Geofence callout */}
       <section className="mt-20 glass rounded-2xl p-8 md:p-12 text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 bg-grdn-lime/20 text-grdn-lime text-[10px] font-mono uppercase tracking-widest rounded-full mb-6">
           <span className="size-1.5 rounded-full bg-grdn-lime" />
-          Geofence active
+          Vault signal live
         </div>
         <h3 className="font-display text-3xl md:text-4xl uppercase mb-4">
-          Posting unlocks at the venue
+          The vault opens at the gate
         </h3>
         <p className="text-sm text-muted-foreground max-w-xl mx-auto">
-          Buy a ticket. Scan the gate QR. We'll confirm you're inside the garden — then your camera unlocks
-          to the event group. View memories anywhere, anytime, even after you leave.
+          Scan in, step inside, and the night becomes yours to capture. The memories stay open long after the last song.
         </p>
       </section>
     </div>

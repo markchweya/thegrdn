@@ -16,12 +16,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Official home of The Garden Ke. Tickets, events and the shared experience gallery.",
+          "THE GRDN by The Garden Ke. Curated nights, ticket drops, living memories.",
       },
       { property: "og:title", content: "THE GRDN" },
       {
         property: "og:description",
-        content: "Tickets, experience and culture from The Garden Ke.",
+        content: "Curated nights, ticket drops, living memories.",
       },
     ],
   }),
@@ -36,6 +36,30 @@ const galleryImages = [
   { src: gallery4, alt: "Pool at night with tropical leaves" },
 ];
 
+const stickyMoments = [
+  {
+    label: "01 / Arrival",
+    title: "The night has a gate",
+    body: "Low light at arrival. Bass in the distance. The first GRDN moment begins before the wristband settles.",
+    image: gallery1,
+    accent: "var(--primary)",
+  },
+  {
+    label: "02 / Access",
+    title: "Access feels intentional",
+    body: "Every pass carries its own pace: early bird, regular, VIP, and crew access for the people arriving together.",
+    image: gallery2,
+    accent: "var(--grdn-lime)",
+  },
+  {
+    label: "03 / Memory",
+    title: "Memories stay warm",
+    body: "The GRDN vault keeps the night alive: faces, firelight, dancefloor fragments, and the proof that you were there.",
+    image: gallery5,
+    accent: "var(--grdn-cyan)",
+  },
+];
+
 function HomePage() {
   const featured = getFeaturedEvent();
   const upcoming = events.filter((e) => e.status === "upcoming");
@@ -48,13 +72,13 @@ function HomePage() {
       <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 pt-12 pb-24">
         <div className="animate-entrance" style={{ animationDelay: "200ms" }}>
           <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-muted-foreground mb-8">
-            Official home of The Garden Ke
+            The Garden Ke presents
           </p>
           <h1 className="font-display text-[18vw] md:text-[15vw] lg:text-[13rem] leading-[0.85] tracking-tighter uppercase mb-6">
             THE <span className="grdn-gradient-text">GRDN</span>
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-balance opacity-80 font-light">
-            Music. Movement. Culture. One experience.
+            Curated nights. Open-air energy. Living memories.
           </p>
         </div>
 
@@ -165,6 +189,75 @@ function HomePage() {
         </div>
       </section>
 
+      {/* STICKY EXPERIENCE STACK */}
+      <section className="relative px-6 py-24 md:py-32 border-y border-border bg-white/[0.015] overflow-clip">
+        <div className="absolute inset-0 opacity-50">
+          <div className="absolute left-0 top-24 size-80 rounded-full bg-primary/20 blur-3xl" />
+          <div className="absolute right-0 bottom-24 size-96 rounded-full bg-grdn-cyan/10 blur-3xl" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-12">
+          <div className="sticky top-20 lg:top-28 h-fit z-10 rounded-2xl bg-background/70 pb-4 pt-2 backdrop-blur-sm lg:bg-transparent lg:pb-0 lg:pt-0 lg:backdrop-blur-0">
+            <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-grdn-lime mb-4">
+              The GRDN method
+            </p>
+            <h2 className="font-display text-5xl md:text-7xl uppercase leading-none mb-6">
+              The night in <span className="grdn-gradient-text">layers</span>
+            </h2>
+            <p className="text-muted-foreground max-w-md leading-relaxed">
+              THE GRDN moves like the event itself: arrival, access, memory.
+              Every scroll should feel closer to the gate.
+            </p>
+          </div>
+
+          <div className="space-y-10 md:space-y-12">
+            {stickyMoments.map((moment, index) => (
+              <article
+                key={moment.label}
+                className="sticky-story-card sticky glass-strong rounded-[1.5rem] overflow-hidden min-h-[74vh] sm:min-h-[620px] md:min-h-[520px] grid md:grid-cols-2 shadow-[0_40px_120px_-70px_var(--color-primary)]"
+                style={{ top: `clamp(88px, ${96 + index * 22}px, 148px)` }}
+              >
+                <div className="relative min-h-[36vh] sm:min-h-[320px] md:min-h-full overflow-hidden">
+                  <img
+                    src={moment.image}
+                    alt={moment.title}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/20 to-transparent" />
+                  <div
+                    className="absolute inset-x-0 bottom-0 h-1"
+                    style={{ backgroundColor: moment.accent }}
+                  />
+                </div>
+
+                <div className="p-7 md:p-10 flex flex-col justify-between">
+                  <div>
+                    <p
+                      className="text-[10px] font-mono uppercase tracking-[0.35em] mb-5"
+                      style={{ color: moment.accent }}
+                    >
+                      {moment.label}
+                    </p>
+                    <h3 className="font-display text-4xl md:text-6xl uppercase leading-none mb-5">
+                      {moment.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">{moment.body}</p>
+                  </div>
+
+                  <div className="mt-8 flex items-center justify-between border-t border-border pt-5">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                      Layer {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="size-3 rounded-full" style={{ backgroundColor: moment.accent }} />
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* EVENT CAROUSEL */}
       <section className="py-20 overflow-hidden">
         <div className="px-6 max-w-7xl mx-auto mb-10 flex items-end justify-between gap-6">
@@ -173,7 +266,7 @@ function HomePage() {
               Upcoming Drops
             </h2>
             <p className="text-muted-foreground font-mono text-xs uppercase tracking-widest mt-2">
-              Next stops on the garden tour
+              The next gates opening
             </p>
           </div>
           <Link
@@ -208,22 +301,22 @@ function HomePage() {
               {
                 num: "01",
                 title: "Secure Access",
-                body: "Purchase your encrypted QR ticket via M-Pesa. Instant delivery to your device.",
+                body: "Choose your pass, lock it in, and carry THE GRDN on your phone.",
               },
               {
                 num: "02",
                 title: "Reach The Radius",
-                body: "Step into the venue geofence. The garden coordinates unlock as you arrive.",
+                body: "Arrive inside the radius. The night starts revealing itself.",
               },
               {
                 num: "03",
                 title: "Scan & Sync",
-                body: "Scan the gate QR. Validation in seconds. You're inside the experience.",
+                body: "Scan once. Step through. The garden takes over.",
               },
               {
                 num: "04",
                 title: "Share Memories",
-                body: "The shared event gallery unlocks. Post from inside the garden, view from anywhere.",
+                body: "The vault opens for the people who were there. The night keeps moving after the venue clears.",
               },
             ].map((step) => (
               <div key={step.num} className="space-y-4 group">
@@ -249,7 +342,7 @@ function HomePage() {
               [ Live gallery feed ]
             </p>
             <p className="text-sm text-muted-foreground max-w-xs">
-              Real uploads from real garden nights. Posting unlocks at the venue, viewing stays open forever.
+              Faces, flames, pool light, and dancefloor evidence from inside THE GRDN.
             </p>
           </div>
         </div>
@@ -291,7 +384,7 @@ function HomePage() {
             Follow the <span className="grdn-gradient-text">movement</span>
           </h2>
           <p className="text-muted-foreground mb-10">
-            THE GRDN lives where the culture lives.
+            THE GRDN moves online before it opens in real life.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a

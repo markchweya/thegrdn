@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import { SiteNav } from "@/components/grdn/SiteNav";
 import { SiteFooter } from "@/components/grdn/SiteFooter";
 import { GradientBlobs } from "@/components/grdn/GradientBlobs";
+import { CustomCursor } from "@/components/grdn/CustomCursor";
 
 function NotFoundComponent() {
   return (
@@ -77,22 +78,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "THE GRDN is the official home of The Garden Ke. Tickets, experience gallery and event drops.",
+          "THE GRDN by The Garden Ke. Curated nights, ticket drops, living memories.",
       },
       { name: "author", content: "The Garden Ke" },
       { name: "theme-color", content: "#0a0a0c" },
       { property: "og:title", content: "THE GRDN" },
       {
         property: "og:description",
-        content: "Tickets, experience and culture from The Garden Ke.",
+        content: "Curated nights, ticket drops, living memories.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@thegardenke" },
       { name: "twitter:title", content: "THE GRDN" },
-      { name: "description", content: "THE GRDN is an immersive event website for ticket sales, event experiences, and photo sharing." },
-      { property: "og:description", content: "THE GRDN is an immersive event website for ticket sales, event experiences, and photo sharing." },
-      { name: "twitter:description", content: "THE GRDN is an immersive event website for ticket sales, event experiences, and photo sharing." },
+      { name: "twitter:description", content: "THE GRDN by The Garden Ke. Curated nights, ticket drops, living memories." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -128,6 +127,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
+      <CustomCursor />
       <GradientBlobs />
       <div className="relative z-10 min-h-screen flex flex-col">
         <SiteNav />

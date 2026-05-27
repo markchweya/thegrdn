@@ -13,7 +13,7 @@ export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
       { title: "THE GRDN" },
-      { name: "description", content: "Complete your ticket purchase via M-Pesa." },
+      { name: "description", content: "Lock your THE GRDN pass and meet us at the gate." },
     ],
   }),
   component: CheckoutPage,
@@ -25,9 +25,8 @@ function CheckoutPage() {
   const { event: eventSlug, ticket: ticketId } = Route.useSearch();
 
   const event: GrdnEvent | undefined = eventSlug ? getEventBySlug(eventSlug) : undefined;
-  const ticket: TicketType | undefined = event && ticketId
-    ? event.ticketTypes.find((t) => t.id === ticketId)
-    : undefined;
+  const ticket: TicketType | undefined =
+    event && ticketId ? event.ticketTypes.find((item) => item.id === ticketId) : undefined;
 
   const [quantity, setQuantity] = useState(1);
   const [phone, setPhone] = useState("");
@@ -38,15 +37,15 @@ function CheckoutPage() {
   if (!event || !ticket) {
     return (
       <div className="px-6 py-32 text-center max-w-md mx-auto">
-        <h1 className="font-display text-4xl uppercase mb-4">Pick a ticket first</h1>
+        <h1 className="font-display text-4xl uppercase mb-4">Choose a pass first</h1>
         <p className="text-muted-foreground mb-6">
-          Choose your tier from the tickets page to start checkout.
+          The gate needs a pass. Pick your tier, then return to checkout.
         </p>
         <Link
           to="/tickets"
           className="inline-block px-6 py-3 bg-foreground text-background font-mono text-xs uppercase tracking-widest"
         >
-          See tickets
+          See passes
         </Link>
       </div>
     );
@@ -54,14 +53,12 @@ function CheckoutPage() {
 
   const total = ticket.priceKes * quantity;
 
-  // Demo M-Pesa flow — replace with createServerFn call when backend wires up.
-  const handlePay = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handlePay = async (eventObject: React.FormEvent) => {
+    eventObject.preventDefault();
     setStatus("initiating");
-    await new Promise((r) => setTimeout(r, 800));
+    await new Promise((resolve) => setTimeout(resolve, 800));
     setStatus("waiting");
-    await new Promise((r) => setTimeout(r, 2200));
-    // Demo: always succeed
+    await new Promise((resolve) => setTimeout(resolve, 2200));
     setStatus("success");
   };
 
@@ -70,22 +67,21 @@ function CheckoutPage() {
       <div className="px-6 py-24 max-w-2xl mx-auto text-center">
         <div className="glass rounded-2xl p-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-grdn-lime/20 text-grdn-lime text-[10px] font-mono uppercase tracking-widest rounded-full mb-6">
-            Payment confirmed
+            Pass confirmed
           </div>
-          <h1 className="font-display text-5xl uppercase mb-4">You're in.</h1>
+          <h1 className="font-display text-5xl uppercase mb-4">You're on the list.</h1>
           <p className="text-muted-foreground mb-8">
-            Your QR ticket is on its way to {email || phone}.
+            Your GRDN pass is on its way to {email || phone}.
           </p>
 
-          {/* QR placeholder block */}
           <div className="mx-auto size-48 grid place-items-center bg-foreground text-background rounded-2xl mb-8 font-mono text-[10px] tracking-widest uppercase">
-            QR · {ticket.id.toUpperCase()}
+            QR / {ticket.id.toUpperCase()}
           </div>
 
           <div className="text-left space-y-2 mb-8 font-mono text-xs uppercase tracking-widest">
-            <div className="flex justify-between"><span className="text-muted-foreground">Event</span><span>{event.title}</span></div>
-            <div className="flex justify-between"><span className="text-muted-foreground">Tier</span><span>{ticket.name}</span></div>
-            <div className="flex justify-between"><span className="text-muted-foreground">Qty</span><span>×{quantity}</span></div>
+            <div className="flex justify-between"><span className="text-muted-foreground">Night</span><span>{event.title}</span></div>
+            <div className="flex justify-between"><span className="text-muted-foreground">Pass</span><span>{ticket.name}</span></div>
+            <div className="flex justify-between"><span className="text-muted-foreground">Qty</span><span>x{quantity}</span></div>
             <div className="flex justify-between"><span className="text-muted-foreground">Total</span><span>KES {total.toLocaleString()}</span></div>
           </div>
 
@@ -93,7 +89,7 @@ function CheckoutPage() {
             to="/experience"
             className="inline-block px-6 py-3 bg-primary text-primary-foreground font-display text-lg tracking-wide"
           >
-            Enter the experience →
+            Enter the vault
           </Link>
         </div>
       </div>
@@ -106,13 +102,12 @@ function CheckoutPage() {
         to="/tickets"
         className="text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-primary mb-6 inline-block"
       >
-        ← Back to tickets
+        Back to passes
       </Link>
 
-      <h1 className="font-display text-5xl md:text-6xl uppercase mb-12">Checkout</h1>
+      <h1 className="font-display text-5xl md:text-6xl uppercase mb-12">Gate checkout</h1>
 
       <div className="grid lg:grid-cols-3 gap-8">
-        {/* Form */}
         <form onSubmit={handlePay} className="lg:col-span-2 glass rounded-2xl p-8 space-y-6">
           <div>
             <label className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">
@@ -122,20 +117,20 @@ function CheckoutPage() {
               required
               type="text"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(eventObject) => setName(eventObject.target.value)}
               maxLength={100}
               className="w-full bg-input border border-border px-4 py-3 focus:outline-none focus:border-primary rounded-lg"
             />
           </div>
           <div>
             <label className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">
-              Email (for ticket delivery)
+              Email for pass delivery
             </label>
             <input
               required
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(eventObject) => setEmail(eventObject.target.value)}
               maxLength={255}
               className="w-full bg-input border border-border px-4 py-3 focus:outline-none focus:border-primary rounded-lg"
             />
@@ -149,7 +144,7 @@ function CheckoutPage() {
               type="tel"
               placeholder="254712345678"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(eventObject) => setPhone(eventObject.target.value)}
               pattern="^254[0-9]{9}$"
               className="w-full bg-input border border-border px-4 py-3 focus:outline-none focus:border-primary rounded-lg font-mono"
             />
@@ -165,17 +160,21 @@ function CheckoutPage() {
             <div className="flex items-center gap-3">
               <button
                 type="button"
-                onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                onClick={() => setQuantity((value) => Math.max(1, value - 1))}
                 className="size-10 glass rounded-lg hover:bg-white/10"
                 aria-label="Decrease"
-              >−</button>
+              >
+                -
+              </button>
               <span className="font-display text-3xl w-12 text-center">{quantity}</span>
               <button
                 type="button"
-                onClick={() => setQuantity((q) => Math.min(10, q + 1))}
+                onClick={() => setQuantity((value) => Math.min(10, value + 1))}
                 className="size-10 glass rounded-lg hover:bg-white/10"
                 aria-label="Increase"
-              >+</button>
+              >
+                +
+              </button>
             </div>
           </div>
 
@@ -184,31 +183,30 @@ function CheckoutPage() {
             disabled={status !== "idle"}
             className="w-full px-6 py-5 bg-primary text-primary-foreground font-display text-xl tracking-wide hover:shadow-[0_0_40px_-10px_var(--color-primary)] transition-all disabled:opacity-60 disabled:cursor-not-allowed rounded-lg"
           >
-            {status === "idle" && `Pay KES ${total.toLocaleString()} with M-Pesa`}
-            {status === "initiating" && "Initiating payment…"}
-            {status === "waiting" && "Check your phone — confirm STK Push"}
+            {status === "idle" && `Lock pass - KES ${total.toLocaleString()}`}
+            {status === "initiating" && "Opening the gate..."}
+            {status === "waiting" && "Confirm on your phone"}
             {status === "failed" && "Retry payment"}
           </button>
 
           {status === "waiting" && (
             <p className="text-xs text-center text-grdn-cyan font-mono uppercase tracking-widest animate-pulse">
-              Waiting for confirmation…
+              Holding your place at the gate...
             </p>
           )}
         </form>
 
-        {/* Summary */}
         <aside className="glass rounded-2xl p-8 h-fit space-y-6">
           <div>
             <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">
-              Event
+              Night
             </div>
             <div className="font-display text-2xl uppercase">{event.title}</div>
             <div className="text-sm text-muted-foreground">{event.displayDate}</div>
           </div>
           <div className="border-t border-border pt-6">
             <div className="flex justify-between text-sm mb-2">
-              <span>{ticket.name} × {quantity}</span>
+              <span>{ticket.name} x {quantity}</span>
               <span className="font-mono">KES {total.toLocaleString()}</span>
             </div>
             <div className="flex justify-between font-display text-2xl pt-4 border-t border-border mt-4">

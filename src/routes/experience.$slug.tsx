@@ -13,7 +13,7 @@ export const Route = createFileRoute("/experience/$slug")({
           { title: "THE GRDN" },
           {
             name: "description",
-            content: `Shared memories from ${loaderData.event.title}.`,
+            content: `THE GRDN vault from ${loaderData.event.title}.`,
           },
         ]
       : [],
@@ -41,25 +41,25 @@ function EventGalleryPage() {
           {event.title}
         </h1>
         <p className="text-lg text-muted-foreground max-w-xl">
-          Memories captured from inside the garden.
+          The night, held in frames.
         </p>
       </header>
 
       <div className="glass rounded-2xl p-6 mb-12 flex items-center justify-between gap-4 flex-wrap">
         <div>
           <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-1">
-            Posting status
+          Vault status
           </div>
-          <div className="font-display text-xl uppercase">View only</div>
+          <div className="font-display text-xl uppercase">Unlocked archive</div>
           <p className="text-xs text-muted-foreground mt-1">
-            Posting unlocks when you scan the gate QR from inside the venue.
+            The strongest frames live here after the gate closes.
           </p>
         </div>
         <button
           type="button"
           className="px-5 py-3 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest rounded-lg hover:shadow-[0_0_30px_-10px_var(--color-primary)] transition-all"
         >
-          Scan gate QR
+          Open vault
         </button>
       </div>
 
@@ -77,7 +77,7 @@ function EventGalleryPage() {
             />
             <div className="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-background/80 to-transparent flex justify-between items-end text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity">
               <span className="text-muted-foreground">{photo.guestHandle}</span>
-              <span className="flex items-center gap-1 text-primary">Heart {photo.likes}</span>
+              <span className="flex items-center gap-1 text-primary">Love {photo.likes}</span>
             </div>
           </div>
         ))}
