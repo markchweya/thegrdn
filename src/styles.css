@@ -95,6 +95,8 @@
   }
   html {
     scroll-behavior: smooth;
+    scrollbar-color: var(--color-primary) hsl(240 10% 5%);
+    scrollbar-width: thin;
   }
   body {
     background-color: var(--color-background);
@@ -106,6 +108,21 @@
   ::selection {
     background: var(--color-primary);
     color: white;
+  }
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(240 10% 5%);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary), var(--grdn-cyan), var(--grdn-lime));
+    border: 3px solid hsl(240 10% 5%);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--grdn-lime), var(--primary));
   }
 }
 
@@ -168,12 +185,36 @@
 .grdn-cursor-dot {
   display: none;
 }
+.sticky-story-section {
+  overflow: visible;
+}
+.sticky-story-deck {
+  contain: layout paint;
+}
 .sticky-story-card {
+  isolation: isolate;
   transform-origin: center top;
+  max-height: calc(100svh - 132px);
+  background:
+    linear-gradient(135deg, hsl(240 10% 6% / 0.98), hsl(188 36% 13% / 0.94)),
+    hsl(240 10% 5%);
+  border: 1px solid hsl(0 0% 100% / 0.16);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
   transition:
     transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 500ms cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 500ms cubic-bezier(0.16, 1, 0.3, 1),
     border-color 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sticky-story-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 86% 12%, hsl(80 90% 50% / 0.14), transparent 32%),
+    linear-gradient(180deg, hsl(0 0% 100% / 0.06), transparent 42%);
 }
 .sticky-story-card:hover {
   transform: translateY(-4px) scale(1.01);
@@ -187,8 +228,38 @@
   transform: scale(1.08);
 }
 
+@supports (animation-timeline: view()) {
+  .sticky-story-card {
+    animation-name: grdn-card-rise;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 58%;
+  }
+}
+
+@keyframes grdn-card-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(28vh) scale(0.94);
+  }
+  28% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  72% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0.18;
+    transform: translateY(-12vh) scale(0.96);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .gradient-blob, .animate-entrance, .animate-marquee {
+  .gradient-blob, .animate-entrance, .animate-marquee, .sticky-story-card {
     animation: none !important;
   }
   .sticky-story-card {
@@ -204,6 +275,15 @@
   .sticky-story-card {
     position: relative;
     top: auto !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .sticky-story-deck {
+    min-height: 245vh;
+  }
+  .sticky-story-card {
+    max-height: calc(100svh - 104px);
   }
 }
 

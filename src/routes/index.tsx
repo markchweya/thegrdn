@@ -190,14 +190,14 @@ function HomePage() {
       </section>
 
       {/* STICKY EXPERIENCE STACK */}
-      <section className="relative px-6 py-24 md:py-32 border-y border-border bg-white/[0.015] overflow-clip">
-        <div className="absolute inset-0 opacity-50">
+      <section className="sticky-story-section relative px-6 py-24 md:py-32 border-y border-border bg-white/[0.015]">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-50">
           <div className="absolute left-0 top-24 size-80 rounded-full bg-primary/20 blur-3xl" />
           <div className="absolute right-0 bottom-24 size-96 rounded-full bg-grdn-cyan/10 blur-3xl" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-12">
-          <div className="sticky top-20 lg:top-28 h-fit z-10 rounded-2xl bg-background/70 pb-4 pt-2 backdrop-blur-sm lg:bg-transparent lg:pb-0 lg:pt-0 lg:backdrop-blur-0">
+        <div className="sticky-story-shell relative max-w-7xl mx-auto grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-12">
+          <div className="sticky top-20 lg:top-28 h-fit z-20 rounded-2xl bg-background/85 pb-4 pt-2 backdrop-blur-md lg:bg-transparent lg:pb-0 lg:pt-0 lg:backdrop-blur-0">
             <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-grdn-lime mb-4">
               The GRDN method
             </p>
@@ -210,12 +210,17 @@ function HomePage() {
             </p>
           </div>
 
-          <div className="space-y-10 md:space-y-12">
+          <div className="sticky-story-deck relative space-y-[48vh] pb-[64vh]">
             {stickyMoments.map((moment, index) => (
               <article
                 key={moment.label}
-                className="sticky-story-card sticky glass-strong rounded-[1.5rem] overflow-hidden min-h-[74vh] sm:min-h-[620px] md:min-h-[520px] grid md:grid-cols-2 shadow-[0_40px_120px_-70px_var(--color-primary)]"
-                style={{ top: `clamp(88px, ${96 + index * 22}px, 148px)` }}
+                className="sticky-story-card sticky rounded-[1.5rem] overflow-hidden min-h-[72vh] sm:min-h-[620px] md:min-h-[520px] grid md:grid-cols-2 shadow-[0_40px_120px_-70px_var(--color-primary)]"
+                style={{
+                  top: "clamp(96px, 12vh, 132px)",
+                  zIndex: index + 1,
+                  "--story-index": index,
+                  "--story-count": stickyMoments.length,
+                } as React.CSSProperties}
               >
                 <div className="relative min-h-[36vh] sm:min-h-[320px] md:min-h-full overflow-hidden">
                   <img
