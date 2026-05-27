@@ -9,7 +9,9 @@ export function CustomCursor() {
   useEffect(() => {
     const dot = dotRef.current;
     const ring = ringRef.current;
-    if (!dot || !ring || !window.matchMedia("(pointer: fine)").matches) return;
+    if (!dot || !ring || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      return;
+    }
 
     let ringX = 0;
     let ringY = 0;
@@ -21,7 +23,8 @@ export function CustomCursor() {
       mouseX = event.clientX;
       mouseY = event.clientY;
       dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-      setHidden(false);
+      const target = event.target;
+      setHidden(target instanceof Element && Boolean(target.closest("input, textarea, select")));
     };
 
     const animate = () => {
