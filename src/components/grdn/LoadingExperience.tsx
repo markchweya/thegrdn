@@ -37,7 +37,7 @@ export function LoadingExperience() {
   return (
     <div
       aria-hidden="true"
-      className={`fixed inset-0 z-[100] grid place-items-center bg-background transition-opacity duration-500 ${
+      className={`grdn-loading-overlay fixed inset-0 z-[100] grid place-items-center bg-background transition-opacity duration-500 ${
         fadingOut ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >

@@ -127,11 +127,24 @@
   html.grdn-loading-lock {
     scrollbar-width: none;
   }
+  html:has(.grdn-loading-overlay) {
+    overflow: hidden;
+    scrollbar-width: none;
+  }
   html.grdn-loading-lock::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
+  html:has(.grdn-loading-overlay)::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
   html.grdn-loading-lock body {
+    overscroll-behavior: none;
+  }
+  html:has(.grdn-loading-overlay) body {
+    overflow: hidden;
     overscroll-behavior: none;
   }
 }
